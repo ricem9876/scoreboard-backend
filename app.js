@@ -9,7 +9,6 @@ const prisma = new PrismaClient();
 // Middleware
 app.use(express.json());
 app.use(cors({ origin: process.env.CLIENT_CORS_URL }));
-app.options("*", cors());
 
 // GET /scoreboard - Retrieve scoreboard data
 app.get("/scoreboard", async (req, res) => {
