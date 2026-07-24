@@ -10,6 +10,16 @@ const prisma = new PrismaClient();
 app.use(express.json());
 app.use(cors({ origin: process.env.CLIENT_CORS_URL }));
 
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS")); // <- this throws, causing a 500
+    }
+  }
+}));
+
 // GET /scoreboard - Retrieve scoreboard data
 app.get("/scoreboard", async (req, res) => {
   try {
