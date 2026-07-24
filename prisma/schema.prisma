@@ -8,7 +8,7 @@ datasource db {
 }
 
 model scoreboard {
-  id          Int     @id @unique(map: "unique")
+  id          Int    @id @default(autoincrement())
   team1_name  String? @default("Team A") @db.Char(20)
   team1_score Int?    @default(0)
   team2_name  String? @default("Team B") @db.Char(20)
